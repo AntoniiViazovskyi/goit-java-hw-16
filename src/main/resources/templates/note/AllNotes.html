@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Notes</title>
+</head>
+
+<body>
+<h1 th:text="'List of all notes:'"></h1>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="note : ${notes}">
+        <td th:text="'id: ' + ${note.id}"></td>
+        <td th:text="'Title: ' + ${note.title}"></td>
+        <td th:text="'Content: ' + ${note.content}"></td>
+        <td>
+            <form action="/test/note/delete" method="post">
+                <input type="hidden" name="id" value="%{note.id}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form action="/test/note/edit" method="get">
+                <input type="hidden" name="id" value="%{note.id}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
